@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "core/*": ["./src/core/*"],
+      "data/*": ["./src/data/*"],
+      "entrypoint/*": ["./src/entrypoint/*"],
+      "config/*": ["./src/config/*"],
+      "__fixtures__/*": ["./src/__fixtures__/*"]
+    }
+  },
+  "include": ["src"]
+}

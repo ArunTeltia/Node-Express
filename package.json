@@ -1,0 +1,64 @@
+{
+  "name": "node-express-template",
+  "version": "1.0.0",
+  "description": "This is the template repository which follows clean architecture practices in the nodejs ecosystem",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "is-ci \"test:coverage\" \"test:watch\"",
+    "test:watch": "jest --watchAll",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watchAll",
+    "test:coverage": "jest --coverage",
+    "lint": "jest --config ./test/jest.lint.js",
+    "lint:fix": "eslint --ignore-path .gitignore . --ext ts --fix",
+    "prettier": "prettier --ignore-path .gitignore --config .prettierrc.yml \"src/**/*.+(ts|json|md)\"",
+    "format": "npm run prettier -- --write",
+    "format:check": "npm run prettier -- --list-different",
+    "dev": "NODE_ENV=development nodemon",
+    "build": "is-ci \"build:prod\" \"build:dev\"",
+    "build:dev": "tsc",
+    "postbuild:dev": "ef-tspm",
+    "build:prod": "tsc -p tsconfig.prod.json",
+    "postbuild:prod": "ef-tspm --tsconfig tsconfig.prod.json",
+    "type-check": "tsc --noEmit",
+    "start": "NODE_ENV=production node .",
+    "validate": "npm run format:check && npm run type-check && npm run test",
+    "setup": "npm install && npm run validate"
+  },
+  "jest-runner-eslint": {
+    "cliOptions": {
+      "ignorePath": ".gitignore",
+      "ext": "ts"
+    }
+  },
+  "author": "Utkarsh Srivastava <utkarsh@sagacious.dev>",
+  "license": "MIT",
+  "devDependencies": {
+    "@ef-carbon/tspm": "^2.2.5",
+    "@types/express": "^4.17.8",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.10",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "eslint": "^7.11.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "is-ci-cli": "^2.1.2",
+    "jest": "^26.5.3",
+    "jest-runner-eslint": "^0.10.0",
+    "jest-watch-select-projects": "^2.0.0",
+    "lint-staged": "^10.4.2",
+    "nodemon": "^2.0.5",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  }
+}
